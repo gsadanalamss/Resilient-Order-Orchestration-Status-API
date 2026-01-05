@@ -2,7 +2,7 @@
 
 ## Objective
 
-Build a production‑grade MuleSoft integration project using Anypoint Code Builder that handles order orchestration across multiple downstream systems with status tracking and failure handling.
+Build a production‑grade MuleSoft integration project using Anypoint that handles order orchestration across multiple downstream systems with status tracking and failure handling.
 
 ---
 
