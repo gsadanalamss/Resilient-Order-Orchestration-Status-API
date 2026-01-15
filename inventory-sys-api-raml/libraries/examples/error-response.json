@@ -1,0 +1,4 @@
+{
+"errorCode": "DOWNSTREAM_TIMEOUT",
+"message": "Inventory system did not respond within SLA"
+}
