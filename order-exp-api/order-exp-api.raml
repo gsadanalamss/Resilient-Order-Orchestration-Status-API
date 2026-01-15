@@ -1,0 +1,60 @@
+#%RAML 1.0
+title: order-exp-api
+version: v1
+baseUri: /api/v1
+
+uses:
+    orderReq: libraries/dataTypes/orderRequest.raml
+    orderRes: libraries/datatypes/OrderResponse.raml
+    statusRes: libraries/datatypes/OrderStatusResponse.raml
+    error: libraries/datatypes/ErrorResponse.raml
+
+
+/orders:
+  post:
+    description: "Accept a new order and return an orderId for tracking"
+    responses:
+        202:
+            description: Order accepted for processing
+            body:
+             application/json:
+                type: orderRes.orderResponse
+                example: !include libraries/examples/order-response.json
+        400:
+            description: Invalid order payload
+            body:
+             application/json:
+                type: error.errorResponse
+                example: !include libraries/examples/error-response.json
+        500:
+            description: Internal platform error
+            body:
+             application/json:
+                type: error.errorResponse
+                example: !include libraries/examples/error-response.json
+
+
+/orders/{orderId}/status:
+    uriParameters:
+     orderId:
+      type: string
+      description: Unique order identifier
+    get:
+        description: Retrieve current processing status of an order
+        responses:
+            200:
+                description: Current order status
+                body:
+                 application/json:
+                    type: statusRes.orderStatusResponse
+                    example: !include libraries/examples/order-status-response.json
+            404:
+                description: Order not found
+                body:
+                 application/json:
+                    type: error.errorResponse
+            500:
+                description: Internal platform error
+                body:
+                 application/json:
+                    type: error.errorResponse

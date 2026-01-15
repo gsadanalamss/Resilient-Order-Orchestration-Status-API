@@ -1,0 +1,11 @@
+{
+  "main": "order-exp-api.raml",
+  "name": "order-exp-api",
+  "classifier": "raml",
+  "organizationId": "3fcd7191-9c89-431b-9bf3-61d8f40bd622",
+  "descriptorVersion": "1.0.0",
+  "groupId": "3fcd7191-9c89-431b-9bf3-61d8f40bd622",
+  "assetId": "order-exp-api",
+  "version": "1.0.0",
+  "tags": []
+}
