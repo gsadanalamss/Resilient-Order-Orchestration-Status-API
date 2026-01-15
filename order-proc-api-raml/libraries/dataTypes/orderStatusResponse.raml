@@ -1,0 +1,20 @@
+#%RAML 1.0 Library
+types:
+  orderStatusResponse:
+    type: object
+    additionalProperties: false
+    properties:
+        orderId:
+            type: string
+        status:
+            type: string
+            enum:
+            - RECEIVED
+            - INVENTORY_CHECK_STARTED
+            - INVENTORY_CONFIRMED
+            - INVENTORY_FAILED
+            - PAYMENT_COMPLETED
+            - PAYMENT_FAILED
+            - SHIPPING_REQUESTED
+            - SHIPPED
+            - SHIPPING_FAILED

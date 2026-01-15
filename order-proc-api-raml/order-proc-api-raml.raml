@@ -1,0 +1,35 @@
+#%RAML 1.0
+title: order-proc-api-raml
+version: v1
+baseUri: http://localhost:8081/api/v1
+
+uses:
+  orderReq: libraries/datatypes/OrderRequest.raml
+  error: libraries/datatypes/ErrorResponse.raml
+
+/process/orders:
+  post:
+    description: Accept an order for orchestration. Trigger downstream inventory, payment, and shipping workflows asynchronously.
+    headers:
+      X-Correlation-Id:
+        type: string
+        required: true
+        description: End-to-end correlation identifier propagated to all system APIs
+    body:
+      application/json:
+        type: orderReq.orderRequest
+        example: !include libraries/examples/order-request.json
+    responses:
+      202:
+        description: Order accepted for processing
+      400:
+        description: Invalid order payload
+        body:
+          application/json:
+            type: error.errorResponse
+            example: !include libraries/examples/error-response.json
+      500:
+        description: Orchestration platform error
+        body:
+          application/json:
+            type: error.errorResponse
