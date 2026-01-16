@@ -1,0 +1,7 @@
+{
+"orderId": "ORD-2026-0001",
+"items": [
+{ "productId": "SKU-9001", "quantity": 2 },
+{ "productId": "SKU-9002", "quantity": 1 }
+]
+}

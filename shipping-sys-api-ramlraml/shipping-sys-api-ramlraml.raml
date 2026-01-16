@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: shipping-sys-api-raml.raml
+uses:
+  shipReq: libraries/datatypes/shippingRequest.raml
+  error: libraries/datatypes/errorResponse.raml
+
+/shipping/create:
+  post:
+    description: Create a shipment for an order (asynchronous processing)
+    headers:
+      X-Correlation-Id:
+        type: string
+        required: true
+        description: Correlation identifier from upstream Process API
+    body:
+      application/json:
+        type: shipReq.shippingRequest
+        example: !include libraries/examples/shipping-request.json
+    responses:
+      202:
+        description: Shipment request accepted for processing
+      500:
+        description: Shipping platform failure
+        body:
+          application/json:
+            type: error.errorResponse
+            example: !include libraries/examples/error-response.json

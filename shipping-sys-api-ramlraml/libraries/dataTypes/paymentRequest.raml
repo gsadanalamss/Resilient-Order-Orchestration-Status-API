@@ -1,0 +1,12 @@
+#%RAML 1.0 Library
+types:
+  paymentRequest:
+    type: object
+    additionalProperties: false
+    properties:
+        orderId:
+            type: string
+        amount:
+            type: number
+            format: double
+            minimum: 0.01
