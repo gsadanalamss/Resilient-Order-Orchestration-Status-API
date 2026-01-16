@@ -1,2 +1,34 @@
 #%RAML 1.0
 title: inventory-sys-api-raml
+baseUri: /api/v1
+
+uses:
+  invReq: libraries/datatypes/InventoryRequest.raml
+  error: libraries/datatypes/ErrorResponse.raml
+
+/inventory/check:
+  post:
+    description: Check inventory availability for an order
+    headers:
+      X-Correlation-Id:
+        type: string
+        required: true
+        description: Correlation identifier from upstream Process API
+    body:
+      application/json:
+        type: invReq.inventoryRequest
+        example: !include libraries/examples/inventory-request.json
+    responses:
+      200:
+        description: Inventory available
+      409:
+        description: Inventory not available
+        body:
+          application/json:
+            type: error.errorResponse
+            example: !include libraries/examples/error-response.json
+      500:
+        description: Inventory system failure
+        body:
+          application/json:
+            type: error.errorResponse

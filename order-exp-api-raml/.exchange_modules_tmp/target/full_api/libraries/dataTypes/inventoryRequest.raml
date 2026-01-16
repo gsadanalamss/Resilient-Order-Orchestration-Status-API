@@ -1,0 +1,20 @@
+#%RAML 1.0 Library
+types:
+  inventoryRequest:
+    type: object
+    additionalProperties: false
+    properties:
+        orderId:
+            type: string
+        items:
+            type: array
+            minItems: 1
+            items:
+                type: object
+                additionalProperties: false
+                properties:
+                    productId:
+                        type: string
+                    quantity:
+                        type: integer
+                        minimum: 1
