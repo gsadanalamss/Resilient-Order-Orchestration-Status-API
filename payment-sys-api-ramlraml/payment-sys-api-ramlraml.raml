@@ -1,0 +1,33 @@
+#%RAML 1.0
+title: payment-sys-api-raml.raml
+
+uses:
+  payReq: libraries/datatypes/PaymentRequest.raml
+  error: libraries/datatypes/ErrorResponse.raml
+
+/payment/charge:
+  post:
+    description: Charge a payment method for an order amount
+    headers:
+      X-Correlation-Id:
+        type: string
+        required: true
+        description: Correlation identifier from upstream Process API
+    body:
+      application/json:
+        type: payReq.paymentRequest
+        example: !include libraries/examples/payment-request.json
+    responses:
+      200:
+        description: Payment approved
+      402:
+        description: Payment declined
+        body:
+          application/json:
+            type: error.errorResponse
+            example: !include libraries/examples/error-response.json
+      500:
+        description: Payment platform failure
+        body:
+          application/json:
+            type: error.errorResponse

@@ -1,0 +1,12 @@
+#%RAML 1.0 Library
+types:
+  orderResponse:
+    type: object
+    additionalProperties: false
+    properties:
+        orderId:
+            type: string
+            required: true
+        message:
+            type: string
+            required: true
